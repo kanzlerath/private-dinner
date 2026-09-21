@@ -66,8 +66,7 @@ button{font:inherit}
 .course-desc{margin:28px 0 0 38px;max-width:300px;font-size:14px;line-height:1.7;color:#5d5550}
 .course-bottom{padding-top:60px}
 .service{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-top:16px;border-top:1px solid var(--line)}
-.service dt{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-.service dd{margin:0;font-size:12px;line-height:1.5}
+.fact{margin:0;font-size:12px;line-height:1.55;color:#2b2623}
 .quote{padding:120px 0 90px}
 .quote-mark{font-family:"Instrument Serif",serif;font-size:150px;line-height:.45;color:rgba(106,31,45,.15);margin-left:-4px}
 .quote blockquote{margin:0;font-family:"Instrument Serif",serif;font-size:48px;line-height:.96;letter-spacing:-.045em;max-width:390px}
@@ -100,7 +99,7 @@ button{font:inherit}
 .finale-copy{margin:28px 0 0 38px;max-width:292px;font-size:14px;line-height:1.7;color:#5d5550}
 .finale-line{margin:54px 0 0 38px;font-family:"Instrument Serif",serif;font-size:29px;line-height:1.05;max-width:300px}
 .finale-bottom{padding-top:68px}
-.close-dinner{appearance:none;border:0;background:transparent;color:var(--fg);padding:0;display:flex;align-items:center;gap:12px;cursor:pointer}.close-dinner span{font-size:11px;letter-spacing:.16em;text-transform:uppercase}.close-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:block;transition:transform .45s ease,opacity .45s ease}.close-dinner.closed .close-dot{transform:scale(4);opacity:.16}.closed-state{margin-top:18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:0;transform:translateY(6px);transition:.4s ease}.closed-state.show{opacity:1;transform:none}
+.close-dinner{appearance:none;border:0;background:transparent;color:var(--fg);padding:0;display:flex;align-items:center;gap:12px;cursor:pointer}.close-dinner span{font-size:11px;letter-spacing:.16em;text-transform:uppercase}.close-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:block}.continuation{position:fixed;inset:0;z-index:200;pointer-events:none;display:grid;place-items:center;overflow:hidden}.continuation-dot{position:absolute;width:10px;height:10px;border-radius:50%;background:var(--accent);transform:scale(1);opacity:0}.continuation.show{pointer-events:auto}.continuation.show .continuation-dot{opacity:1;animation:dotFill .9s cubic-bezier(.2,.75,.2,1) forwards}.continuation-text{position:relative;z-index:2;font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(48px,14vw,74px);letter-spacing:-.03em;color:#f5eee8;opacity:0;transform:translateY(14px);transition:opacity .7s ease .55s,transform .7s ease .55s}.continuation.show .continuation-text{opacity:1;transform:none}@keyframes dotFill{to{transform:scale(180);opacity:1}}
 @keyframes driftOne{0%{transform:translate3d(0,0,0) rotate(-8deg)}100%{transform:translate3d(-18px,22px,0) rotate(4deg)}}
 @keyframes driftTwo{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(24px,-28px,0)}}
 @keyframes driftThree{0%{transform:translate3d(0,0,0) rotate(0deg)}100%{transform:translate3d(-14px,-20px,0) rotate(18deg)}}
@@ -136,7 +135,7 @@ button{font:inherit}
       <div class="small">order no. 001<br>delivered</div>
     </div>
     <div class="hero-title reveal">
-      <h2>Ужин<br><em>без повода.</em></h2>
+      <h2>Говорю же,<br><em>люблю романтику.</em></h2>
       <p class="hero-copy">Дьявол кроется в деталях, а таймкодов сериалов я не смогу вспомнить.:)</p>
     </div>
     <div class="hero-bottom reveal">
@@ -183,10 +182,10 @@ button{font:inherit}
       <h3>Печёные<br><em>перцы рамиро.</em></h3>
     </div>
     <div class="course-bottom">
-      <dl class="service">
-        <div><dt>про рамиро</dt><dd>после запекания натуральные сахара карамелизуются, поэтому вкус становится заметно слаще</dd></div>
-        <div><dt>про фету</dt><dd>настоящая фета — греческий сыр с защищённым происхождением PDO</dd></div>
-      </dl>
+      <div class="service">
+        <p class="fact">После запекания натуральные сахара в рамиро карамелизуются, поэтому перец становится заметно слаще и ароматнее.</p>
+        <p class="fact">Фета — сыр с защищённым происхождением: по стандарту PDO она производится в определённых регионах Греции.</p>
+      </div>
     </div>
   </section>
 
@@ -201,10 +200,10 @@ button{font:inherit}
       <h3>Лазанья<br><em>аль Форно.</em></h3>
     </div>
     <div class="course-bottom">
-      <dl class="service">
-        <div><dt>из Болоньи</dt><dd>lasagne al forno — одно из знаковых блюд кухни Эмилии-Романьи</dd></div>
-        <div><dt>al forno</dt><dd>по-итальянски это буквально «из печи», то есть запечённая в духовке</dd></div>
-      </dl>
+      <div class="service">
+        <p class="fact">Lasagne al forno — одно из знаковых блюд Эмилии-Романьи, региона, где Болонья считается гастрономической столицей Италии.</p>
+        <p class="fact">Al forno буквально значит «из печи»: слои пасты запекаются вместе с рагу и бешамелем до единой текстуры.</p>
+      </div>
     </div>
   </section>
 
@@ -219,10 +218,10 @@ button{font:inherit}
       <h3>Баскский<br><em>чизкейк.</em></h3>
     </div>
     <div class="course-bottom">
-      <dl class="service">
-        <div><dt>почему баскский</dt><dd>этот стиль чизкейка появился в Сан-Себастьяне и специально печётся до очень тёмной корочки</dd></div>
-        <div><dt>без основы</dt><dd>в классической версии нет песочного коржа — вся текстура строится на сырной массе</dd></div>
-      </dl>
+      <div class="service">
+        <p class="fact">Этот стиль чизкейка прославился в Сан-Себастьяне: его специально пекут при высокой температуре до очень тёмной корочки.</p>
+        <p class="fact">У классической версии нет песочной основы — вся текстура строится на сырной массе и контрасте корочки с кремовым центром.</p>
+      </div>
     </div>
   </section>
 
@@ -244,7 +243,6 @@ button{font:inherit}
     </div>
     <div class="finale-bottom">
       <button class="close-dinner" id="closeDinner"><span>поставить точку</span><i class="close-dot"></i></button>
-      <div class="closed-state" id="closedState">order no. 001 · closed</div>
     </div>
   </section>
 
@@ -253,6 +251,7 @@ button{font:inherit}
     <span>made for one</span>
   </footer>
 </main>
+<div class="continuation" id="continuation" aria-hidden="true"><div class="continuation-dot"></div><div class="continuation-text">to be continued...</div></div>
 
 <script>
 const intro=document.getElementById('intro');
@@ -263,11 +262,11 @@ const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecti
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max?scrollY/max*100:0)+'%'});
 const closeDinner=document.getElementById('closeDinner');
-const closedState=document.getElementById('closedState');
+const continuation=document.getElementById('continuation');
 closeDinner.addEventListener('click',()=>{
-  closeDinner.classList.add('closed');
-  closeDinner.querySelector('span').textContent='готово';
-  closedState.classList.add('show');
+  continuation.classList.add('show');
+  continuation.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
   if(navigator.vibrate)navigator.vibrate(8);
 });
 </script>
