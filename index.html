@@ -31,10 +31,10 @@ button{font:inherit}
 .intro-rule{height:1px;background:var(--line);margin-bottom:16px}
 .intro h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(72px,20vw,104px);line-height:.78;letter-spacing:-.065em;margin:0;max-width:390px}
 .intro h1 em{font-style:italic;color:var(--accent)}
-.intro-copy{margin:28px 0 34px;display:grid;grid-template-columns:1fr 1fr;gap:18px;font-size:13px;line-height:1.55;color:#5f5752}
+.intro-copy{margin:28px 0 34px;max-width:270px;font-size:13px;line-height:1.55;color:#5f5752}
 .open{appearance:none;border:0;background:transparent;padding:0;color:var(--fg);display:flex;align-items:center;gap:12px;cursor:pointer}
 .open span{font-size:12px;letter-spacing:.14em;text-transform:uppercase}
-.open i{width:46px;height:46px;border-radius:50%;border:1px solid var(--fg);display:grid;place-items:center;font-style:normal;font-size:19px;transition:.25s ease}
+.open i{width:46px;height:46px;border-radius:50%;border:1px solid var(--fg);display:grid;place-items:center;font-style:normal;transition:.25s ease}.open i svg{display:block}
 .open:active i{transform:scale(.94)}
 .hero{min-height:100svh;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:28px;display:flex;flex-direction:column;justify-content:space-between}
 .hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
@@ -49,7 +49,7 @@ button{font:inherit}
 .hero-bottom .scroll{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg)}
 .rule{height:1px;background:var(--line)}
 .menu{padding:90px 0 60px}
-.menu-head{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:end;margin-bottom:38px}
+.menu-head{display:block;margin-bottom:38px}
 .menu-head h3{font-family:"Instrument Serif",serif;font-size:48px;font-weight:400;line-height:.9;letter-spacing:-.045em;margin:0}
 .menu-head p{font-size:12px;line-height:1.55;color:var(--muted);margin:0}
 .menu-item{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:23px 0;border-top:1px solid var(--line)}
@@ -94,19 +94,13 @@ button{font:inherit}
 .shell{position:relative;z-index:1}
 .finale{padding:112px 0 18px;min-height:88svh;display:flex;flex-direction:column;justify-content:space-between}
 .finale-top{max-width:390px}
-.finale-index{font-family:"Instrument Serif",serif;font-size:118px;line-height:.65;letter-spacing:-.07em;color:rgba(106,31,45,.12);margin-bottom:22px}
+.finale-index{font-family:"Instrument Serif",serif;font-size:96px;line-height:.72;letter-spacing:.08em;color:rgba(106,31,45,.12);margin-bottom:28px}
 .finale h3{font-family:"Instrument Serif",serif;font-size:clamp(64px,18vw,92px);line-height:.80;letter-spacing:-.06em;font-weight:400;margin:0}
 .finale h3 em{font-style:italic;color:var(--accent)}
 .finale-copy{margin:28px 0 0 38px;max-width:292px;font-size:14px;line-height:1.7;color:#5d5550}
 .finale-line{margin:54px 0 0 38px;font-family:"Instrument Serif",serif;font-size:29px;line-height:1.05;max-width:300px}
 .finale-bottom{padding-top:68px}
-.reveal-note{appearance:none;border:0;background:transparent;color:var(--fg);padding:0;display:flex;align-items:center;gap:14px;cursor:pointer}
-.reveal-note i{width:52px;height:52px;border:1px solid var(--fg);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:20px;transition:transform .35s ease,background .35s ease,color .35s ease}
-.reveal-note span{font-size:11px;letter-spacing:.16em;text-transform:uppercase}
-.reveal-note.opened i{transform:rotate(45deg);background:var(--fg);color:var(--bg)}
-.final-message{font-family:"Instrument Serif",serif;font-size:38px;line-height:.96;letter-spacing:-.04em;max-width:345px;margin-top:34px;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
-.final-message.show{opacity:1;transform:none}
-.final-sign{margin-top:18px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.close-dinner{appearance:none;border:0;background:transparent;color:var(--fg);padding:0;display:flex;align-items:center;gap:12px;cursor:pointer}.close-dinner span{font-size:11px;letter-spacing:.16em;text-transform:uppercase}.close-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);display:block;transition:transform .45s ease,opacity .45s ease}.close-dinner.closed .close-dot{transform:scale(4);opacity:.16}.closed-state{margin-top:18px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:0;transform:translateY(6px);transition:.4s ease}.closed-state.show{opacity:1;transform:none}
 @keyframes driftOne{0%{transform:translate3d(0,0,0) rotate(-8deg)}100%{transform:translate3d(-18px,22px,0) rotate(4deg)}}
 @keyframes driftTwo{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(24px,-28px,0)}}
 @keyframes driftThree{0%{transform:translate3d(0,0,0) rotate(0deg)}100%{transform:translate3d(-14px,-20px,0) rotate(18deg)}}
@@ -130,9 +124,8 @@ button{font:inherit}
     <h1>Для<br><em>тебя.</em></h1>
     <div class="intro-copy">
       <div>Маленький ужин, который почему-то получил собственный сайт.</div>
-      <div>Без сложной легенды. Просто хотелось сделать тебе приятно.</div>
     </div>
-    <button class="open" id="openIntro"><i>↗</i><span>открыть</span></button>
+    <button class="open" id="openIntro"><i aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none"><path d="M7 17L17 7M9 7h8v8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></i><span>открыть</span></button>
   </div>
 </section>
 
@@ -143,9 +136,8 @@ button{font:inherit}
       <div class="small">order no. 001<br>delivered</div>
     </div>
     <div class="hero-title reveal">
-      <div class="small">tonight</div>
       <h2>Ужин<br><em>без повода.</em></h2>
-      <p class="hero-copy">Просто захотелось сделать тебе что-нибудь вкусное. Остальное — моя неспособность остановиться на обычной записке.</p>
+      <p class="hero-copy">Дьявол кроется в деталях, а таймкодов сериалов я не смогу вспомнить.:)</p>
     </div>
     <div class="hero-bottom reveal">
       <div class="note">Three courses.<br>One guest.</div>
@@ -158,7 +150,6 @@ button{font:inherit}
   <section class="menu reveal">
     <div class="menu-head">
       <h3>Сегодня<br>в меню.</h3>
-      <p>Три блюда без попытки впечатлить сложностью. Просто то, что должно быть вкусно.</p>
     </div>
     <div class="menu-item">
       <div class="menu-num">01</div>
@@ -170,15 +161,15 @@ button{font:inherit}
     <div class="menu-item">
       <div class="menu-num">02</div>
       <div>
-        <h4>Лазанья болоньезе</h4>
-        <p>мясное рагу · бешамель · пармезан · моцарелла</p>
+        <h4>Лазанья аль Форно</h4>
+        <p>рагу · бешамель · пармезан · моцарелла</p>
       </div>
     </div>
     <div class="menu-item">
       <div class="menu-num">03</div>
       <div>
         <h4>Баскский чизкейк</h4>
-        <p>карамельная корочка · кремовая середина · малина</p>
+        <p>карамельная корочка · кремовая середина · вишня</p>
       </div>
     </div>
   </section>
@@ -190,12 +181,11 @@ button{font:inherit}
         <div class="course-tag">starter</div>
       </div>
       <h3>Печёные<br><em>перцы рамиро.</em></h3>
-      <p class="course-desc">Сладкие перцы, солёная фета, немного кислоты и фисташки. Начать с чего-то лёгкого показалось хорошей идеей.</p>
     </div>
     <div class="course-bottom">
       <dl class="service">
-        <div><dt>как есть</dt><dd>холодными или комнатной температуры</dd></div>
-        <div><dt>что делать</dt><dd>ничего. Просто открыть и съесть</dd></div>
+        <div><dt>про рамиро</dt><dd>после запекания натуральные сахара карамелизуются, поэтому вкус становится заметно слаще</dd></div>
+        <div><dt>про фету</dt><dd>настоящая фета — греческий сыр с защищённым происхождением PDO</dd></div>
       </dl>
     </div>
   </section>
@@ -208,13 +198,12 @@ button{font:inherit}
         <div class="course-no">02</div>
         <div class="course-tag">main</div>
       </div>
-      <h3>Лазанья<br><em>болоньезе.</em></h3>
-      <p class="course-desc">Рагу, бешамель, пармезан и моцарелла. Готовилась заметно дольше, чем, скорее всего, будет съедаться.</p>
+      <h3>Лазанья<br><em>аль Форно.</em></h3>
     </div>
     <div class="course-bottom">
       <dl class="service">
-        <div><dt>духовка</dt><dd>160–170°C · около 10–12 минут</dd></div>
-        <div><dt>вариант попроще</dt><dd>микроволновка тоже полностью легальна</dd></div>
+        <div><dt>из Болоньи</dt><dd>lasagne al forno — одно из знаковых блюд кухни Эмилии-Романьи</dd></div>
+        <div><dt>al forno</dt><dd>по-итальянски это буквально «из печи», то есть запечённая в духовке</dd></div>
       </dl>
     </div>
   </section>
@@ -228,12 +217,11 @@ button{font:inherit}
         <div class="course-tag">dessert</div>
       </div>
       <h3>Баскский<br><em>чизкейк.</em></h3>
-      <p class="course-desc">Кремовый внутри, тёмный сверху. Малиновый соус лежит отдельно исключительно ради того, чтобы его можно было налить столько, сколько хочется.</p>
     </div>
     <div class="course-bottom">
       <dl class="service">
-        <div><dt>подавать</dt><dd>лучше прямо из холодильника</dd></div>
-        <div><dt>соус</dt><dd>экономить на нём не предполагается</dd></div>
+        <div><dt>почему баскский</dt><dd>этот стиль чизкейка появился в Сан-Себастьяне и специально печётся до очень тёмной корочки</dd></div>
+        <div><dt>без основы</dt><dd>в классической версии нет песочного коржа — вся текстура строится на сырной массе</dd></div>
       </dl>
     </div>
   </section>
@@ -242,24 +230,21 @@ button{font:inherit}
 
   <section class="quote reveal">
     <div class="quote-mark">“</div>
-    <blockquote>Ничего особенного не нужно придумывать в ответ.</blockquote>
-    <p>Мне просто хотелось, чтобы у тебя сегодня был хороший вечер. Всё остальное — уже приятный бонус.</p>
+    <blockquote><a href="https://citaty.info/quote/31562?utm_source=citaty.info&amp;utm_medium=referral&amp;utm_campaign=copy&amp;utm_content=quote-link" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">«... И чтобы я не кушал с нею — Я ничего не ел вкуснее!..»</a></blockquote>
   </section>
 
   <div class="rule"></div>
 
   <section class="finale reveal">
     <div class="finale-top">
-      <div class="finale-index">fin.</div>
-      <div class="small">one last thing</div>
-      <h3>Вот и всё.<br><em>Почти.</em></h3>
-      <p class="finale-copy">Если было вкусно — просто скажи мне. Если очень вкусно — я, возможно, когда-нибудь придумаю меню №002.</p>
-      <div class="finale-line">Но сегодня никаких обязательств. Только ужин.</div>
+      <div class="finale-index">final</div>
+      <h3>Вот и всё.</h3>
+      <p class="finale-copy">Если было вкусно - обещаю подумать над меню №002</p>
+      <div class="finale-line">Конец.:)</div>
     </div>
     <div class="finale-bottom">
-      <button class="reveal-note" id="revealNote"><i>+</i><span>последняя записка</span></button>
-      <div class="final-message" id="finalMessage">Надеюсь, ты улыбнулась хотя бы в одном месте этого слишком серьёзного сайта про лазанью.</div>
-      <div class="final-sign">приятного вечера</div>
+      <button class="close-dinner" id="closeDinner"><span>поставить точку</span><i class="close-dot"></i></button>
+      <div class="closed-state" id="closedState">order no. 001 · closed</div>
     </div>
   </section>
 
@@ -277,12 +262,12 @@ openIntro.addEventListener('click',()=>{intro.classList.add('off');if(navigator.
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.14});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max?scrollY/max*100:0)+'%'});
-const revealNote=document.getElementById('revealNote');
-const finalMessage=document.getElementById('finalMessage');
-revealNote.addEventListener('click',()=>{
-  const opened=revealNote.classList.toggle('opened');
-  finalMessage.classList.toggle('show',opened);
-  revealNote.querySelector('i').textContent=opened?'×':'+';
+const closeDinner=document.getElementById('closeDinner');
+const closedState=document.getElementById('closedState');
+closeDinner.addEventListener('click',()=>{
+  closeDinner.classList.add('closed');
+  closeDinner.querySelector('span').textContent='готово';
+  closedState.classList.add('show');
   if(navigator.vibrate)navigator.vibrate(8);
 });
 </script>
