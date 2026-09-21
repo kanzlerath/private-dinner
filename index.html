@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#f2eee8" />
+<title>Dinner for You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f2eee8;
+  --fg:#141211;
+  --muted:#756b64;
+  --accent:#6a1f2d;
+  --line:rgba(20,18,17,.14);
+  --max:480px;
+}
+*{box-sizing:border-box}
+html{background:var(--bg);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Manrope",sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+button{font:inherit}
+.shell{width:min(100%,var(--max));margin:0 auto;padding:0 22px 120px}
+.serif{font-family:"Instrument Serif",serif}
+.small{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.intro{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:flex-end;transition:opacity .7s ease,visibility .7s ease}
+.intro.off{opacity:0;visibility:hidden}
+.intro-inner{width:min(100%,var(--max));margin:0 auto;padding:0 22px 36px}
+.intro-rule{height:1px;background:var(--line);margin-bottom:16px}
+.intro h1{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(72px,20vw,104px);line-height:.78;letter-spacing:-.065em;margin:0;max-width:390px}
+.intro h1 em{font-style:italic;color:var(--accent)}
+.intro-copy{margin:28px 0 34px;display:grid;grid-template-columns:1fr 1fr;gap:18px;font-size:13px;line-height:1.55;color:#5f5752}
+.open{appearance:none;border:0;background:transparent;padding:0;color:var(--fg);display:flex;align-items:center;gap:12px;cursor:pointer}
+.open span{font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.open i{width:46px;height:46px;border-radius:50%;border:1px solid var(--fg);display:grid;place-items:center;font-style:normal;font-size:19px;transition:.25s ease}
+.open:active i{transform:scale(.94)}
+.hero{min-height:100svh;padding-top:calc(24px + env(safe-area-inset-top));padding-bottom:28px;display:flex;flex-direction:column;justify-content:space-between}
+.hero-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+.hero-top div:last-child{text-align:right}
+.hero-title{padding-top:12vh}
+.hero-title .small{color:var(--accent);margin-bottom:18px}
+.hero h2{font-family:"Instrument Serif",serif;font-size:clamp(78px,21vw,112px);line-height:.78;letter-spacing:-.07em;font-weight:400;margin:0}
+.hero h2 em{font-style:italic}
+.hero-copy{margin-top:28px;max-width:300px;font-size:15px;line-height:1.65;color:#5f5752}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:24px}
+.hero-bottom .note{font-family:"Instrument Serif",serif;font-size:22px;line-height:1.1;max-width:190px}
+.hero-bottom .scroll{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);writing-mode:vertical-rl;transform:rotate(180deg)}
+.rule{height:1px;background:var(--line)}
+.menu{padding:90px 0 60px}
+.menu-head{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:end;margin-bottom:38px}
+.menu-head h3{font-family:"Instrument Serif",serif;font-size:48px;font-weight:400;line-height:.9;letter-spacing:-.045em;margin:0}
+.menu-head p{font-size:12px;line-height:1.55;color:var(--muted);margin:0}
+.menu-item{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:23px 0;border-top:1px solid var(--line)}
+.menu-item:last-child{border-bottom:1px solid var(--line)}
+.menu-num{font-family:"Instrument Serif",serif;font-size:28px;line-height:1;color:var(--accent)}
+.menu-item h4{font-family:"Instrument Serif",serif;font-size:31px;line-height:.98;font-weight:400;letter-spacing:-.025em;margin:0 0 8px}
+.menu-item p{font-size:12px;line-height:1.55;color:var(--muted);margin:0;max-width:285px}
+.course{padding:90px 0 36px;min-height:88svh;display:flex;flex-direction:column;justify-content:space-between}
+.course-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.course-no{font-family:"Instrument Serif",serif;font-size:122px;line-height:.7;letter-spacing:-.07em;color:rgba(106,31,45,.13)}
+.course-tag{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:right;padding-top:6px}
+.course h3{font-family:"Instrument Serif",serif;font-size:clamp(61px,17vw,84px);line-height:.83;letter-spacing:-.055em;font-weight:400;margin:36px 0 0;max-width:380px}
+.course h3 em{font-style:italic;color:var(--accent)}
+.course-desc{margin:28px 0 0 38px;max-width:300px;font-size:14px;line-height:1.7;color:#5d5550}
+.course-bottom{padding-top:60px}
+.service{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding-top:16px;border-top:1px solid var(--line)}
+.service dt{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+.service dd{margin:0;font-size:12px;line-height:1.5}
+.quote{padding:120px 0 90px}
+.quote-mark{font-family:"Instrument Serif",serif;font-size:150px;line-height:.45;color:rgba(106,31,45,.15);margin-left:-4px}
+.quote blockquote{margin:0;font-family:"Instrument Serif",serif;font-size:48px;line-height:.96;letter-spacing:-.045em;max-width:390px}
+.quote p{margin:26px 0 0 64px;max-width:280px;font-size:13px;line-height:1.65;color:var(--muted)}
+.rating{padding-top:80px}
+.rating h3{font-family:"Instrument Serif",serif;font-size:54px;line-height:.9;font-weight:400;letter-spacing:-.045em;margin:0 0 28px}
+.rating-list{border-top:1px solid var(--line)}
+.choice{width:100%;appearance:none;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--fg);padding:20px 0;text-align:left;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;cursor:pointer}
+.choice strong{font-family:"Instrument Serif",serif;font-size:29px;font-weight:400;line-height:1}
+.choice span{font-size:20px;transition:transform .2s ease;color:var(--accent)}
+.choice:active span{transform:translateX(4px)}
+.answer{font-family:"Instrument Serif",serif;font-size:30px;line-height:1.05;letter-spacing:-.03em;margin-top:30px;min-height:70px;opacity:0;transform:translateY(8px);transition:.4s ease}
+.answer.show{opacity:1;transform:none}
+.footer{padding-top:90px;display:flex;justify-content:space-between;gap:20px;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.progress{position:fixed;left:0;top:0;height:2px;background:var(--accent);width:0;z-index:60}
+.motion-layer{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.motion-object{position:absolute;color:var(--accent);opacity:.16;will-change:transform;user-select:none}
+.motion-object.one{top:16vh;right:-20px;font-family:"Instrument Serif",serif;font-size:96px;font-style:italic;animation:driftOne 17s ease-in-out infinite alternate}
+.motion-object.two{top:54vh;left:-16px;width:82px;height:82px;border:1px solid rgba(106,31,45,.20);border-radius:50%;animation:driftTwo 22s ease-in-out infinite alternate, slowSpin 30s linear infinite}
+.motion-object.two:after{content:"";position:absolute;left:50%;top:50%;width:42px;height:1px;background:rgba(106,31,45,.28);transform:translate(-50%,-50%) rotate(-18deg)}
+.motion-object.three{bottom:10vh;right:18px;font-size:28px;animation:driftThree 14s ease-in-out infinite alternate}
+.shell{position:relative;z-index:1}
+.finale{padding:112px 0 18px;min-height:88svh;display:flex;flex-direction:column;justify-content:space-between}
+.finale-top{max-width:390px}
+.finale-index{font-family:"Instrument Serif",serif;font-size:118px;line-height:.65;letter-spacing:-.07em;color:rgba(106,31,45,.12);margin-bottom:22px}
+.finale h3{font-family:"Instrument Serif",serif;font-size:clamp(64px,18vw,92px);line-height:.80;letter-spacing:-.06em;font-weight:400;margin:0}
+.finale h3 em{font-style:italic;color:var(--accent)}
+.finale-copy{margin:28px 0 0 38px;max-width:292px;font-size:14px;line-height:1.7;color:#5d5550}
+.finale-line{margin:54px 0 0 38px;font-family:"Instrument Serif",serif;font-size:29px;line-height:1.05;max-width:300px}
+.finale-bottom{padding-top:68px}
+.reveal-note{appearance:none;border:0;background:transparent;color:var(--fg);padding:0;display:flex;align-items:center;gap:14px;cursor:pointer}
+.reveal-note i{width:52px;height:52px;border:1px solid var(--fg);border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:20px;transition:transform .35s ease,background .35s ease,color .35s ease}
+.reveal-note span{font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.reveal-note.opened i{transform:rotate(45deg);background:var(--fg);color:var(--bg)}
+.final-message{font-family:"Instrument Serif",serif;font-size:38px;line-height:.96;letter-spacing:-.04em;max-width:345px;margin-top:34px;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.final-message.show{opacity:1;transform:none}
+.final-sign{margin-top:18px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+@keyframes driftOne{0%{transform:translate3d(0,0,0) rotate(-8deg)}100%{transform:translate3d(-18px,22px,0) rotate(4deg)}}
+@keyframes driftTwo{0%{transform:translate3d(0,0,0)}100%{transform:translate3d(24px,-28px,0)}}
+@keyframes driftThree{0%{transform:translate3d(0,0,0) rotate(0deg)}100%{transform:translate3d(-14px,-20px,0) rotate(18deg)}}
+@keyframes slowSpin{to{rotate:360deg}}
+@media (max-width:380px){.intro-copy,.menu-head,.service{grid-template-columns:1fr}.hero h2{font-size:72px}.course h3{font-size:58px}}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="motion-layer" aria-hidden="true">
+  <div class="motion-object one">&</div>
+  <div class="motion-object two"></div>
+  <div class="motion-object three">✦</div>
+</div>
+
+<section class="intro" id="intro">
+  <div class="intro-inner">
+    <div class="intro-rule"></div>
+    <div class="small">private dinner · no. 001</div>
+    <h1>Для<br><em>тебя.</em></h1>
+    <div class="intro-copy">
+      <div>Маленький ужин, который почему-то получил собственный сайт.</div>
+      <div>Без сложной легенды. Просто хотелось сделать тебе приятно.</div>
+    </div>
+    <button class="open" id="openIntro"><i>↗</i><span>открыть</span></button>
+  </div>
+</section>
+
+<main class="shell">
+  <section class="hero">
+    <div class="hero-top reveal">
+      <div class="small">21.09.26<br>private dinner</div>
+      <div class="small">order no. 001<br>delivered</div>
+    </div>
+    <div class="hero-title reveal">
+      <div class="small">tonight</div>
+      <h2>Ужин<br><em>без повода.</em></h2>
+      <p class="hero-copy">Просто захотелось сделать тебе что-нибудь вкусное. Остальное — моя неспособность остановиться на обычной записке.</p>
+    </div>
+    <div class="hero-bottom reveal">
+      <div class="note">Three courses.<br>One guest.</div>
+      <div class="scroll">scroll</div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="menu reveal">
+    <div class="menu-head">
+      <h3>Сегодня<br>в меню.</h3>
+      <p>Три блюда без попытки впечатлить сложностью. Просто то, что должно быть вкусно.</p>
+    </div>
+    <div class="menu-item">
+      <div class="menu-num">01</div>
+      <div>
+        <h4>Печёные перцы рамиро</h4>
+        <p>крем из феты · лимон · оливковое масло · фисташка</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-num">02</div>
+      <div>
+        <h4>Лазанья болоньезе</h4>
+        <p>мясное рагу · бешамель · пармезан · моцарелла</p>
+      </div>
+    </div>
+    <div class="menu-item">
+      <div class="menu-num">03</div>
+      <div>
+        <h4>Баскский чизкейк</h4>
+        <p>карамельная корочка · кремовая середина · малина</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="course reveal">
+    <div>
+      <div class="course-top">
+        <div class="course-no">01</div>
+        <div class="course-tag">starter</div>
+      </div>
+      <h3>Печёные<br><em>перцы рамиро.</em></h3>
+      <p class="course-desc">Сладкие перцы, солёная фета, немного кислоты и фисташки. Начать с чего-то лёгкого показалось хорошей идеей.</p>
+    </div>
+    <div class="course-bottom">
+      <dl class="service">
+        <div><dt>как есть</dt><dd>холодными или комнатной температуры</dd></div>
+        <div><dt>что делать</dt><dd>ничего. Просто открыть и съесть</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="course reveal">
+    <div>
+      <div class="course-top">
+        <div class="course-no">02</div>
+        <div class="course-tag">main</div>
+      </div>
+      <h3>Лазанья<br><em>болоньезе.</em></h3>
+      <p class="course-desc">Рагу, бешамель, пармезан и моцарелла. Готовилась заметно дольше, чем, скорее всего, будет съедаться.</p>
+    </div>
+    <div class="course-bottom">
+      <dl class="service">
+        <div><dt>духовка</dt><dd>160–170°C · около 10–12 минут</dd></div>
+        <div><dt>вариант попроще</dt><dd>микроволновка тоже полностью легальна</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="course reveal">
+    <div>
+      <div class="course-top">
+        <div class="course-no">03</div>
+        <div class="course-tag">dessert</div>
+      </div>
+      <h3>Баскский<br><em>чизкейк.</em></h3>
+      <p class="course-desc">Кремовый внутри, тёмный сверху. Малиновый соус лежит отдельно исключительно ради того, чтобы его можно было налить столько, сколько хочется.</p>
+    </div>
+    <div class="course-bottom">
+      <dl class="service">
+        <div><dt>подавать</dt><dd>лучше прямо из холодильника</dd></div>
+        <div><dt>соус</dt><dd>экономить на нём не предполагается</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="quote reveal">
+    <div class="quote-mark">“</div>
+    <blockquote>Ничего особенного не нужно придумывать в ответ.</blockquote>
+    <p>Мне просто хотелось, чтобы у тебя сегодня был хороший вечер. Всё остальное — уже приятный бонус.</p>
+  </section>
+
+  <div class="rule"></div>
+
+  <section class="finale reveal">
+    <div class="finale-top">
+      <div class="finale-index">fin.</div>
+      <div class="small">one last thing</div>
+      <h3>Вот и всё.<br><em>Почти.</em></h3>
+      <p class="finale-copy">Если было вкусно — просто скажи мне. Если очень вкусно — я, возможно, когда-нибудь придумаю меню №002.</p>
+      <div class="finale-line">Но сегодня никаких обязательств. Только ужин.</div>
+    </div>
+    <div class="finale-bottom">
+      <button class="reveal-note" id="revealNote"><i>+</i><span>последняя записка</span></button>
+      <div class="final-message" id="finalMessage">Надеюсь, ты улыбнулась хотя бы в одном месте этого слишком серьёзного сайта про лазанью.</div>
+      <div class="final-sign">приятного вечера</div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <span>private dinner</span>
+    <span>made for one</span>
+  </footer>
+</main>
+
+<script>
+const intro=document.getElementById('intro');
+const openIntro=document.getElementById('openIntro');
+const progress=document.getElementById('progress');
+openIntro.addEventListener('click',()=>{intro.classList.add('off');if(navigator.vibrate)navigator.vibrate(12)});
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+window.addEventListener('scroll',()=>{const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max?scrollY/max*100:0)+'%'});
+const revealNote=document.getElementById('revealNote');
+const finalMessage=document.getElementById('finalMessage');
+revealNote.addEventListener('click',()=>{
+  const opened=revealNote.classList.toggle('opened');
+  finalMessage.classList.toggle('show',opened);
+  revealNote.querySelector('i').textContent=opened?'×':'+';
+  if(navigator.vibrate)navigator.vibrate(8);
+});
+</script>
+</body>
+</html>
